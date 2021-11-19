@@ -2,10 +2,12 @@
 
 import CustomVideoElement from "custom-video-element";
 import Hls from "hls.js";
+import mux from "mux-embed";
 
 class HLSVideoElement extends CustomVideoElement {
   constructor() {
     super();
+    this.muxPlayerInitTime = Date.now();
   }
 
   get src() {
@@ -36,6 +38,21 @@ class HLSVideoElement extends CustomVideoElement {
       this.nativeEl.src = this.src;
       this.nativeEl.load();
     }
+    const muxEnvId = "ri0pg2slbpklmp9velqaurm99";
+    mux.monitor(this.nativeEl, {
+      debug: true,
+      hlsjs: hls,
+      Hls: Hls,
+      data: {
+        env_key: muxEnvId,
+        // player_name: "Main Player", // any arbitrary string you want to use to identify this player
+        player_init_time: this.muxPlayerInitTime,
+        video_id: this.getAttribute("lesson-id"),
+        video_title: this.getAttribute("title"),
+        video_series: this.getAttribute("series"),
+        video_duration: this.getAttribute("duration"), // in milliseconds, ex: 120000
+      },
+    });
   }
 
   // play() {

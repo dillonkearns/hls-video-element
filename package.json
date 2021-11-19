@@ -29,7 +29,8 @@
   "license": "MIT",
   "dependencies": {
     "custom-video-element": "^0.0.2",
-    "hls.js": "^0.13.2"
+    "hls.js": "^0.13.2",
+    "mux-embed": "4.2.3"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.2",
