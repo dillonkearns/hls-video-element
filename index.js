@@ -40,7 +40,7 @@ class HLSVideoElement extends CustomVideoElement {
     }
     const muxEnvId = "ri0pg2slbpklmp9velqaurm99";
     mux.monitor(this.nativeEl, {
-      debug: true,
+      debug: false,
       hlsjs: hls,
       Hls: Hls,
       data: {
